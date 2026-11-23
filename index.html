@@ -40,9 +40,125 @@ body{background-color:#f4efe4;background-image:repeating-linear-gradient(0deg,rg
 @media(max-width:760px){.memory-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.memory-card{padding:7px}.memory-card img{height:190px}.memory-card figcaption strong{font-size:15px}.memory-card figcaption span{font-size:11px}}
 @media(max-width:430px){.memory-grid{grid-template-columns:1fr}.memory-card img{height:auto;max-height:420px;object-fit:contain;background:#e6ddcf}}
 </style>
+<style>
+.hero-fireflies {
+  position: absolute;
+  inset: 18px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero-fireflies span {
+  position: absolute;
+  top: var(--top);
+  left: var(--left);
+  width: var(--size, 4px);
+  height: var(--size, 4px);
+  border-radius: 50%;
+  background: #fff0c6;
+  box-shadow: 0 0 9px 3px #edc98199;
+  opacity: 0;
+}
+
+.hero-fireflies span:nth-child(1) { --top: 72%; --left: 8%; --delay: 100ms; }
+.hero-fireflies span:nth-child(2) { --top: 47%; --left: 12%; --delay: 550ms; --size: 3px; }
+.hero-fireflies span:nth-child(3) { --top: 83%; --left: 21%; --delay: 300ms; }
+.hero-fireflies span:nth-child(4) { --top: 27%; --left: 80%; --delay: 200ms; --size: 3px; }
+.hero-fireflies span:nth-child(5) { --top: 58%; --left: 91%; --delay: 450ms; }
+.hero-fireflies span:nth-child(6) { --top: 79%; --left: 84%; --delay: 650ms; --size: 5px; }
+.hero-fireflies span:nth-child(7) { --top: 85%; --left: 68%; --delay: 850ms; --size: 3px; }
+
+.memory-photo {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: zoom-in;
+}
+
+.memory-photo:focus-visible,
+.gallery-close:focus-visible {
+  outline: 2px solid var(--forest);
+  outline-offset: 4px;
+}
+
+.gallery-dialog {
+  width: min(94vw, 52rem);
+  max-height: 90dvh;
+  padding: 0;
+  border: 1px solid var(--gold);
+  border-radius: 12px;
+  background: var(--ivory);
+  color: var(--ink);
+}
+
+.gallery-dialog::backdrop { background: rgb(17 27 21 / 85%); }
+html:has(.gallery-dialog[open]) { overflow: hidden; }
+.gallery-dialog figure { margin: 0; }
+
+.gallery-dialog img {
+  display: block;
+  width: 100%;
+  max-height: 72dvh;
+  object-fit: contain;
+  background: var(--deep);
+}
+
+.gallery-dialog figcaption { padding: 12px 18px 16px; text-align: center; }
+.gallery-dialog figcaption span { display: block; }
+
+.gallery-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  background: var(--ivory);
+  color: var(--forest);
+  font: 28px / 1 Arial, sans-serif;
+  cursor: pointer;
+}
+
+.gallery-close:focus-visible { outline-color: #fff0c6; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .herotxt { animation: wedding-entrance 850ms ease-out both; }
+  .hero-fireflies span { animation: wedding-firefly 3.8s ease-in-out var(--delay) both; }
+  .section-heading-visible { animation: wedding-entrance 550ms ease-out both; }
+  .gallery-dialog[open] { animation: wedding-entrance 220ms ease-out both; }
+}
+
+@media (prefers-reduced-motion: no-preference) and (hover: hover) {
+  .memory-card:has(.memory-photo) { transition: translate 220ms ease, box-shadow 220ms ease; }
+  .memory-card:has(.memory-photo:hover) {
+    translate: 0 -4px;
+    box-shadow: 0 12px 24px rgb(54 43 27 / 18%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+@keyframes wedding-entrance {
+  from { opacity: .35; translate: 0 9px; }
+  to { opacity: 1; translate: 0 0; }
+}
+
+@keyframes wedding-firefly {
+  0% { opacity: 0; translate: 0 8px; }
+  40% { opacity: .85; }
+  65% { opacity: .55; }
+  100% { opacity: 0; translate: 14px -32px; }
+}
+</style>
 </head><body>
 <header class="nav"><div class="navin"><div class="brand">Brett & KayLee</div><nav class="links"><a href="#story">Our Story</a><a href="#venue">The Venue</a><a href="#celebration">The Day</a><a href="#party">Wedding Party</a><a href="#gallery">Gallery</a><a href="#dresscode">Dress Code</a><a href="#registry">Registry</a><a href="#rsvp">RSVP</a></nav></div></header>
-<main><section class="hero"><div class="herotxt"><div class="eyebrow">Together with our families</div><h1>Brett <span style="font-style:italic">&</span> KayLee</h1><div class="sub">A day to remember, a love to last forever.</div><div class="date">April 17, 2027 · Adams County, Pennsylvania</div><div class="tentative">Date & venue details tentative</div></div></section>
+<main><section class="hero"><div class="hero-fireflies" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div><div class="herotxt"><div class="eyebrow">Together with our families</div><h1>Brett <span style="font-style:italic">&</span> KayLee</h1><div class="sub">A day to remember, a love to last forever.</div><div class="date">April 17, 2027 · Adams County, Pennsylvania</div><div class="tentative">Date & venue details tentative</div></div></section>
 <section class="section"><h2>We’re getting married</h2><div class="ornament">✧ &nbsp; ❧ &nbsp; ✧</div><p class="intro">We're so excited to celebrate this next chapter with the people who mean the most to us. Join us for a day filled with love, laughter, good food, and memories we'll cherish forever.</p></section>
 <section class="band" id="story"><div class="section"><h2>Our Story</h2><div class="ornament">❧</div><div class="story"><p>Our story may not have followed the conventional path, but it's become something uniquely ours.</p><p>We met in July 2025, and before long, we were making memories together—hiking new trails, camping under the stars, golfing, and spending countless evenings around the fire sharing jokes and listening to hours of music.</p><p>Some of our favorite moments have been the simplest ones: laughing until we can't breathe, enjoying a quiet evening together, and finding adventure in the everyday.</p><p>Along the way, our family grew. Brett brought Makenna into our lives, and together we welcomed our son, Maveryck. We've built a family, shared new adventures, and created a life that is ours.</p><p>In July 2026, Brett proposed, and we began looking forward to forever.</p><p>Our journey hasn't been conventional, but we wouldn't trade the memories, the laughter, or the life we've built together.</p><p class="closing">Here's to love, family, adventure, and a lifetime of inside jokes.</p></div><div class="timeline"><div><strong>July 2025</strong><span>We met</span></div><div><strong>July 2026</strong><span>We got engaged</span></div></div></div></section>
 
@@ -109,4 +225,58 @@ body{background-color:#f4efe4;background-image:repeating-linear-gradient(0deg,rg
 </div></section>
 <section class="rsvp" id="rsvp"><div class="section"><h2>Kindly Reply</h2><div class="ornament">❧</div><p class="intro" style="color:#e3e8df">Please let us know if you'll be celebrating with us.</p><form class="form" onsubmit="event.preventDefault();document.getElementById('msg').textContent='This is a preview only. The RSVP form must be connected to a response service before invitations are sent.'"><label>Guest name<input required placeholder="Your full name"></label><label>Will you be joining us?<select required><option value="">Please select</option><option>Joyfully accepts</option><option>Regretfully declines</option></select></label><label>Number attending<select><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></label><label>Dietary restrictions<textarea rows="3" placeholder="Please share any allergies or dietary needs"></textarea></label><button type="submit">Preview RSVP</button><small>Kindly respond by March 20, 2027. This deadline is provisional until the wedding date is confirmed.</small><small id="msg" aria-live="polite"></small></form></div></section></main>
 <footer class="footer"><div class="names">Brett & KayLee</div><small>April 17, 2027 · Tentative</small></footer>
+<dialog class="gallery-dialog" aria-label="Photo viewer">
+  <button class="gallery-close" type="button" aria-label="Close photo" autofocus>×</button>
+  <figure>
+    <img alt="">
+    <figcaption><strong></strong><span></span></figcaption>
+  </figure>
+</dialog>
+<script>
+  if ("IntersectionObserver" in window && matchMedia("(prefers-reduced-motion: no-preference)").matches) {
+    const headings = new IntersectionObserver((entries, observer) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("section-heading-visible");
+          observer.unobserve(entry.target);
+        }
+      }
+    }, { rootMargin: "-90px 0px 0px", threshold: 0.25 });
+
+    document.querySelectorAll("main .section h2").forEach(heading => headings.observe(heading));
+  }
+
+  const galleryDialog = document.querySelector(".gallery-dialog");
+  if (typeof galleryDialog.showModal === "function") {
+    const fullPhoto = galleryDialog.querySelector("img");
+    const photoTitle = galleryDialog.querySelector("figcaption strong");
+    const photoDescription = galleryDialog.querySelector("figcaption span");
+
+    document.querySelectorAll(".memory-card").forEach(card => {
+      const photo = card.querySelector("img");
+      const caption = card.querySelector("figcaption");
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "memory-photo";
+      button.setAttribute("aria-label", `View full photo: ${photo.alt}`);
+      button.setAttribute("aria-haspopup", "dialog");
+      photo.before(button);
+      button.append(photo);
+
+      button.addEventListener("click", () => {
+        fullPhoto.alt = photo.alt;
+        fullPhoto.src = photo.currentSrc || photo.src;
+        photoTitle.textContent = caption.querySelector("strong").textContent;
+        photoDescription.textContent = caption.querySelector("span").textContent;
+        galleryDialog.showModal();
+      });
+    });
+
+    galleryDialog.querySelector(".gallery-close").addEventListener("click", () => galleryDialog.close());
+    galleryDialog.addEventListener("click", event => {
+      if (event.target === galleryDialog) galleryDialog.close();
+    });
+    galleryDialog.addEventListener("close", () => fullPhoto.removeAttribute("src"));
+  }
+</script>
 </body></html>
